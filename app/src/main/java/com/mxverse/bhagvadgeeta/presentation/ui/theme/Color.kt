@@ -1,4 +1,4 @@
-package com.mxverse.bhagvadgeeta.ui.theme
+package com.mxverse.bhagvadgeeta.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

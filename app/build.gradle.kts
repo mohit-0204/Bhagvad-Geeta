@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.dagger.hilt) // ✅ Hilt plugin
+    alias(libs.plugins.ksp) // ✅ KSP plugin
 }
 
 android {
@@ -27,12 +29,17 @@ android {
             )
         }
     }
+
+    hilt {
+        enableAggregatingTask = false
+    }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -56,4 +63,39 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // ✅ Navigation for Jetpack Compose
+    implementation(libs.androidx.navigation.compose)
+
+    // ✅ Hilt for Dependency Injection
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose) // if using Hilt Navigation Compose
+
+    // ✅ Lifecycle ViewModel in Compose
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    // ✅ Room Database
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
+    // ✅ WorkManager for background scheduling
+    implementation(libs.work.runtime.ktx)
+
+    // ✅ Retrofit & Gson for networking
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
+    // ✅ Kotlin Serialization (alternative to Gson)
+    implementation(libs.kotlinx.serialization.json)
+
+    // ✅ Coil for image loading
+    implementation(libs.coil.compose)
+    implementation(libs.coil.okhttp)
+
+    // ✅ Logging Interceptor for HTTP requests
+    implementation(libs.okhttp.logging)
+
+
 }
