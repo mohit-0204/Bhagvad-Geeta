@@ -2,10 +2,12 @@ package com.mxverse.bhagvadgeeta.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val Saffron = Color(0xFFFF6F00) // Primary
+val SaffronDark = Color(0xFFC43E00) // Darker tone
+val SaffronLight = Color(0xFFFFA040) // Lighter tone
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val BackgroundLight = Color(0xFFFFFBF3)
+val SurfaceLight = Color(0xFFFFF3E0)
+val OnPrimary = Color.White
+val OnBackground = Color(0xFF1B1B1B)
+val OnSurface = Color(0xFF1B1B1B)

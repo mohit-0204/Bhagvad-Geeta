@@ -1,84 +1,107 @@
 package com.mxverse.bhagvadgeeta.presentation.ui.home
 
 import android.util.Log
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.mxverse.bhagvadgeeta.data.remote.dtos.ChapterDto
+import com.mxverse.bhagvadgeeta.presentation.ui.home.components.HomeTopBar
+import com.mxverse.bhagvadgeeta.presentation.ui.home.components.VerseOfTheDayCard
+import com.mxverse.bhagvadgeeta.presentation.ui.home.components.WelcomeSection
 import com.mxverse.bhagvadgeeta.presentation.viewmodel.HomeViewModel
-import okhttp3.OkHttpClient
-import okhttp3.Request
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), modifier: Modifier) {
+fun HomeScreen(
+    modifier: Modifier = Modifier,
+    viewModel: HomeViewModel = hiltViewModel()
+) {
     val state = viewModel.uiState
 
-    when {
-        state.isLoading -> {
-            Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator()
+    Column(modifier = modifier.fillMaxSize()) {
+
+        HomeTopBar()
+        WelcomeSection("Mohit")
+        VerseOfTheDayCard()
+
+        when {
+            state.isLoading -> {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
+                }
             }
-        }
 
-        state.errorMessage != null -> {
-            Box(modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text(text = state.errorMessage)
-
-                Thread{
-                    val client = OkHttpClient()
-
-                    val request = Request.Builder()
-                        .url("https://bhagavad-gita3.p.rapidapi.com/v2/chapters/")
-                        .get()
-                        .addHeader(
-                            "x-rapidapi-key",
-                            "f8c6f1af6fmsh2cc70538ee20e29p1ddb70jsncb7e6fceb4de"
-                        )
-                        .addHeader("x-rapidapi-host", "bhagavad-gita3.p.rapidapi.com")
-                        .build()
-
-                    val response = client.newCall(request).execute()
-
-                    Log.d("HomeScreen", "Resp: \n${response.body?.string()}")
-                }.start()
-
-
-                Log.d(
-                    "HomeScreen", "Error: \n" + state.errorMessage)
+            state.errorMessage != null -> {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = state.errorMessage,
+                        color = MaterialTheme.colorScheme.error,
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                    Log.d("HomeScreen", "Error: \n${state.errorMessage}")
+                }
             }
-        }
 
-        else -> {
-            LazyColumn(modifier.fillMaxSize()) {
-                items(state.chapters) { chapter ->
-                    ChapterItem(chapter)
+            else -> {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    items(state.chapters) { chapter ->
+                        ChapterItem(chapter)
+                    }
                 }
             }
         }
     }
 }
 
+
 @Composable
 fun ChapterItem(chapter: ChapterDto) {
-    Column(
+    Card(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
+            .fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
-        Text(text = "Chapter ${chapter.name}", style = MaterialTheme.typography.titleMedium)
-        Text(text = chapter.name, style = MaterialTheme.typography.bodyLarge)
-        Text(text = chapter.name_translated, style = MaterialTheme.typography.bodyMedium)
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "Chapter ${chapter.chapter_number}: ${chapter.name}",
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.primary
+            )
+
+            Spacer(modifier = Modifier.height(4.dp))
+
+            Text(
+                text = chapter.name_translated,
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+
+            Spacer(modifier = Modifier.height(2.dp))
+
+            Text(
+                text = chapter.name_meaning,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+            )
+        }
     }
 }
