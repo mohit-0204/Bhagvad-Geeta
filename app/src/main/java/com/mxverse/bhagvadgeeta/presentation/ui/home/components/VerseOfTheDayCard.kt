@@ -34,7 +34,7 @@ fun VerseOfTheDayCard(
     ) {
         Row(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .padding(16.dp)
         ) {
             Column(
@@ -68,7 +68,7 @@ fun VerseOfTheDayCard(
             Spacer(modifier = Modifier.width(8.dp))
 
             Image(
-                painter = rememberAsyncImagePainter("https://i.imgur.com/nG3NFGF.png"), // change to any image
+                painter = rememberAsyncImagePainter("https://cdnb.artstation.com/p/assets/images/images/045/009/957/large/nikhil-mishra-shri-krishna-5-1a-wm.jpg?1641718204"), // change to any image
                 contentDescription = "Shlok Image",
                 modifier = Modifier
                     .size(64.dp)
