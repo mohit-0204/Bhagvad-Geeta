@@ -1,4 +1,4 @@
-package com.mxverse.bhagvadgeeta.presentation.ui.home.components
+package com.mxverse.bhagvadgeeta.presentation.ui.screens.home.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -6,7 +6,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,6 +19,7 @@ import com.mxverse.bhagvadgeeta.data.remote.dtos.ChapterDto
 fun ChapterList(
     chapters: List<ChapterDto>,
     modifier: Modifier = Modifier,
+    onChapterClick: (Int) -> Unit
 ) {
     Column(
         modifier = modifier
@@ -28,7 +28,7 @@ fun ChapterList(
     ) {
         Text(
             text = "Chapters",
-            style = MaterialTheme.typography.titleMedium.copy(fontWeight = androidx.compose.ui.text.font.FontWeight.Bold),
+            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
             modifier = Modifier.padding(bottom = 8.dp)
         )
 
@@ -36,7 +36,7 @@ fun ChapterList(
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             items(chapters) { chapter ->
-                ChapterItem(chapter)
+                ChapterItem(chapter, onClick = { onChapterClick(chapter.chapter_number) })
             }
         }
     }
@@ -46,6 +46,7 @@ fun ChapterList(
 fun ChapterItem(
     chapter: ChapterDto,
     modifier: Modifier = Modifier,
+    onClick: () -> Unit,
     status: String = "Completed" // or "In Progress", "Not Started"
 ) {
     Card(
@@ -54,7 +55,8 @@ fun ChapterItem(
             containerColor = Color(0xFFF5F5F5)
         ),
         shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        onClick = onClick
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
@@ -109,10 +111,6 @@ fun ChapterItem(
         }
     }
 }
-
-
-
-
 
 
 @Composable

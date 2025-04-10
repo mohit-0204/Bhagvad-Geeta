@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization) // ✅ Serialization plugin
     alias(libs.plugins.dagger.hilt) // ✅ Hilt plugin
     alias(libs.plugins.ksp) // ✅ KSP plugin
 }
@@ -87,7 +88,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
-    // ✅ Kotlin Serialization (alternative to Gson)
+    // ✅ Kotlin Serialization (alternative to Gson && used for type safe Navigation)
     implementation(libs.kotlinx.serialization.json)
 
     // ✅ Coil for image loading

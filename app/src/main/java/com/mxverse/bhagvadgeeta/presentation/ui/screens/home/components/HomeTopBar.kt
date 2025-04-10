@@ -1,4 +1,4 @@
-package com.mxverse.bhagvadgeeta.presentation.ui.home.components
+package com.mxverse.bhagvadgeeta.presentation.ui.screens.home.components
 
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -42,8 +42,8 @@ fun HomeTopBar() {
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color.Transparent, // No background
-            scrolledContainerColor = Color.Transparent
+            containerColor = Color.White, // No background
+            scrolledContainerColor = Color.White
         ),
         modifier = Modifier
             .fillMaxWidth()

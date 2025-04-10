@@ -1,4 +1,4 @@
-package com.mxverse.bhagvadgeeta.presentation.ui.home.components
+package com.mxverse.bhagvadgeeta.presentation.ui.screens.home.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
