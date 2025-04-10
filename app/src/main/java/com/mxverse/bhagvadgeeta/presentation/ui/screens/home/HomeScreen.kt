@@ -16,7 +16,7 @@ import com.mxverse.bhagvadgeeta.presentation.ui.screens.home.components.HomeTopB
 import com.mxverse.bhagvadgeeta.presentation.ui.screens.home.components.ProgressCard
 import com.mxverse.bhagvadgeeta.presentation.ui.screens.home.components.VerseOfTheDayCard
 import com.mxverse.bhagvadgeeta.presentation.ui.screens.home.components.WelcomeSection
-import com.mxverse.bhagvadgeeta.presentation.viewmodel.HomeViewModel
+import com.mxverse.bhagvadgeeta.presentation.ui.screens.home.viewmodel.HomeViewModel
 
 @Composable
 fun HomeScreen(

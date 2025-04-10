@@ -1,4 +1,4 @@
-package com.mxverse.bhagvadgeeta.presentation.viewmodel
+package com.mxverse.bhagvadgeeta.presentation.ui.screens.home.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

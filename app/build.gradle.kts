@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.kotlin.serialization) // ✅ Serialization plugin
     alias(libs.plugins.dagger.hilt) // ✅ Hilt plugin
     alias(libs.plugins.ksp) // ✅ KSP plugin
+    alias(libs.plugins.google.services) // ✅ Google-Services plugin
+
 }
 
 android {
@@ -97,6 +99,10 @@ dependencies {
 
     // ✅ Logging Interceptor for HTTP requests
     implementation(libs.okhttp.logging)
+
+    // ✅ Firebase Dependencies for backend
+    implementation(platform(libs.firebase.bom)) // BOM ensures versions match
+    implementation(libs.firebase.auth)
 
 
 }
