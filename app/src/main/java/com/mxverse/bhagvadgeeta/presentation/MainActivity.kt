@@ -1,4 +1,4 @@
-package com.mxverse.bhagvadgeeta
+package com.mxverse.bhagvadgeeta.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,7 +7,6 @@ import androidx.activity.enableEdgeToEdge
 import com.mxverse.bhagvadgeeta.presentation.navigation.AppNavGraph
 import com.mxverse.bhagvadgeeta.presentation.ui.theme.BhagvadGeetaTheme
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

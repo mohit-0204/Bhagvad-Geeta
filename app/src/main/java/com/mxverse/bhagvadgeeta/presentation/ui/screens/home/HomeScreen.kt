@@ -20,60 +20,45 @@ import com.mxverse.bhagvadgeeta.presentation.ui.screens.home.viewmodel.HomeViewM
 
 @Composable
 fun HomeScreen(
-    modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = hiltViewModel(),
-    onChapterClick: (Int) -> Unit
+    viewModel: HomeViewModel = hiltViewModel(), onChapterClick: (Int) -> Unit
 ) {
     val state = viewModel.uiState
-    var selectedIndex by remember { mutableStateOf(0) }
 
-    Scaffold(
-        bottomBar = {
-            BottomNavBar(
-                selectedIndex = selectedIndex,
-                onItemSelected = { selectedIndex = it }
-            )
-        }
-    ) { innerPadding ->
-        Column(
-            modifier = modifier
-                .fillMaxSize()
-        ) {
-            HomeTopBar()
-            WelcomeSection("Mohit")
-            VerseOfTheDayCard()
-            ProgressCard()
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        HomeTopBar()
+        WelcomeSection("Mohit")
+        VerseOfTheDayCard()
+        ProgressCard()
 
-            when {
-                state.isLoading -> {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        CircularProgressIndicator()
-                    }
+        when {
+            state.isLoading -> {
+                Box(
+                    modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
                 }
+            }
 
-                state.errorMessage != null -> {
-                    Box(
-                        modifier = Modifier.fillMaxSize()
-                            .padding(innerPadding),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = state.errorMessage,
-                            color = MaterialTheme.colorScheme.error,
-                            style = MaterialTheme.typography.bodyLarge
-                        )
-                    }
+            state.errorMessage != null -> {
+                Box(
+                    modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = state.errorMessage,
+                        color = MaterialTheme.colorScheme.error,
+                        style = MaterialTheme.typography.bodyLarge
+                    )
                 }
+            }
 
-                else -> {
-                    ChapterList(chapters = state.chapters, onChapterClick = onChapterClick)
-                }
+            else -> {
+                ChapterList(chapters = state.chapters, onChapterClick = onChapterClick)
             }
         }
     }
+
 }
 
 

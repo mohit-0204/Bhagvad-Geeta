@@ -27,5 +27,13 @@ class AuthRepositoryImpl @Inject constructor(
             Result.success(Unit)
         } catch (e: Exception) {
             Result.failure(e)
-        }    }
+        }
+    }
+    override fun logout() {
+        firebaseAuth.signOut()
+    }
+
+    override fun isUserLoggedIn(): Boolean {
+        return firebaseAuth.currentUser != null
+    }
 }
