@@ -66,7 +66,9 @@ fun AppNavGraph() {
             }
             composable<ChapterDetail> {
                 val args = it.toRoute<ChapterDetail>()
-                ChapterDetailScreen(chapterNumber = args.chapterNumber)
+                ChapterDetailScreen(chapterNumber = args.chapterNumber){
+                    navController.navigate(Home)
+                }
             }
 
             composable<Login> {

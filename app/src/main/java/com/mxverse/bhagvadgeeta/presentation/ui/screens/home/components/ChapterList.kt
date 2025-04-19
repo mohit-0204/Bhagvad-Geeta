@@ -33,9 +33,10 @@ fun ChapterList(
         )
 
         LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            contentPadding = PaddingValues(bottom = 4.dp)
         ) {
-            items(chapters) { chapter ->
+            items(chapters, key = { it.chapter_number }) { chapter ->
                 ChapterItem(chapter, onClick = { onChapterClick(chapter.chapter_number) })
             }
         }
@@ -52,17 +53,17 @@ fun ChapterItem(
     Card(
         modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = Color(0xFFF5F5F5)
+            containerColor = Color.White
         ),
         shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         onClick = onClick
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(modifier = Modifier.weight(1f)) {
+            Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
                 // Title + Chip
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -80,16 +81,12 @@ fun ChapterItem(
                     ChapterStatusChip(status = status)
                 }
 
-                Spacer(modifier = Modifier.height(6.dp))
-
                 // Translated Name
                 Text(
                     text = chapter.name_translated,
-                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium),
-                    color = MaterialTheme.colorScheme.onSurface
+                    style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium),
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                 )
-
-                Spacer(modifier = Modifier.height(2.dp))
 
                 // Total Verses
                 Text(
