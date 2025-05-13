@@ -1,27 +1,27 @@
 [versions]
-agp = "8.9.1"
+agp = "8.10.0"
 kotlin = "2.1.20"
 coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-lifecycleRuntimeKtx = "2.8.7"
+lifecycleRuntimeKtx = "2.9.0"
 activityCompose = "1.10.1"
-composeBom = "2025.04.00"
+composeBom = "2025.05.00"
 
 # additional dependencies
 
-lifecycleViewModelCompose = "2.8.7"                   # For ViewModel in Compose
-navigationCompose = "2.8.9"                           # For Jetpack Compose Navigation
+lifecycleViewModelCompose = "2.9.0"                   # For ViewModel in Compose
+navigationCompose = "2.9.0"                           # For Jetpack Compose Navigation
 hilt = "2.52"                                         # For Hilt DI
 hiltNavigationCompose = "1.2.0"                       # For Hilt Navigation in Compose
-room = "2.7.0"                                        # For local database
-work = "2.10.0"                                        # For scheduling (e.g., daily verse reminders)
+room = "2.7.1"                                        # For local database
+work = "2.10.1"                                        # For scheduling (e.g., daily verse reminders)
 retrofit = "2.11.0"                                    # For networking
-serialization = "1.7.3"                               # For Kotlinx serialization
+serialization = "1.8.1"                               # For Kotlinx serialization
 coil = "3.1.0"                                        # For image loading
 okhttp = "4.12.0"                                     # For logging Interceptor
-firebase-bom = "33.12.0"                              # For Firebase Bom
+firebase-bom = "33.13.0"                              # For Firebase Bom
 google-services = "4.4.2"                             # For Google Services
 
 [libraries]
